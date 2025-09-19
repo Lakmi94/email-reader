@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EmailReaderBasic } from './email-reader-basic';
 
 describe('EmailReaderBasic', () => {

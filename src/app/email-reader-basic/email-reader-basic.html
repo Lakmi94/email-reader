@@ -1,1 +1,29 @@
-<p>email-reader-basic works!</p>
+<div class="container">
+  <h1>Basic email reader</h1>
+
+  <form #emailForm="ngForm">
+    <div class="form-group mb-3">
+      <label>To</label>
+      <input class="form-control" type="text" required name="emailTo" [(ngModel)]="email.to" #emailTo="ngModel" />
+    </div>
+    <div class="form-group mb-3">
+      <label>From</label>
+      <input class="form-control" type="text" required name="emailFrom" [(ngModel)]="email.from" #emailFrom="ngModel"/>
+    </div>
+    <div class="form-group mb-3">
+      <label>Subject</label>
+      <input
+        class="form-control"
+        type="text"
+        required
+        name="emailSubject"
+        #emailSubject="ngModel"
+        [(ngModel)]="email.subject"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label>email body</label>
+      <textarea class="form-control" name="emailBody" [(ngModel)]="email.body" #emailBody="ngModel"></textarea>
+    </div>
+  </form>
+</div>
