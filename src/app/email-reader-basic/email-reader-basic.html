@@ -1,14 +1,28 @@
 <div class="container">
   <h1>Basic email reader</h1>
 
-  <form #emailForm="ngForm">
+  <form #emailForm="ngForm" (ngSubmit)="addEmailToList(email)">
     <div class="form-group mb-3">
       <label>To</label>
-      <input class="form-control" type="text" required name="emailTo" [(ngModel)]="email.to" #emailTo="ngModel" />
+      <input
+        class="form-control"
+        type="text"
+        required
+        name="emailTo"
+        [(ngModel)]="email.to"
+        #emailTo="ngModel"
+      />
     </div>
     <div class="form-group mb-3">
       <label>From</label>
-      <input class="form-control" type="text" required name="emailFrom" [(ngModel)]="email.from" #emailFrom="ngModel"/>
+      <input
+        class="form-control"
+        type="text"
+        required
+        name="emailFrom"
+        [(ngModel)]="email.from"
+        #emailFrom="ngModel"
+      />
     </div>
     <div class="form-group mb-3">
       <label>Subject</label>
@@ -21,9 +35,43 @@
         [(ngModel)]="email.subject"
       />
     </div>
+
     <div class="form-group mb-3">
       <label>email body</label>
-      <textarea class="form-control" name="emailBody" [(ngModel)]="email.body" #emailBody="ngModel"></textarea>
+      <textarea
+        class="form-control"
+        name="emailBody"
+        [(ngModel)]="email.body"
+        #emailBody="ngModel"
+      ></textarea>
+    </div>
+    <div class="d-flex flex-row">
+      <button class="btn btn-primary me-5" type="submit">
+        Send
+      </button>
+
+      <button class="btn btn-outline-secondary" type="reset" (click)="resetEmail()">
+        Reset
+      </button>
     </div>
   </form>
+  <!-- <table class="table table-striped mt-5" *ngIf="emailList.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">To</th>
+        <th scope="col">From</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Body</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mail of emailList">
+        <td>{{ mail.to }}</td>
+        <td>{{ mail.from }}</td>
+        <td>{{ mail.subject }}</td>
+        <td>{{ mail.body }}</td>
+      </tr>
+    </tbody>
+    </table> -->
+
 </div>
