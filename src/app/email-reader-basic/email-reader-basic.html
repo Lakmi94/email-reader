@@ -11,7 +11,15 @@
         name="emailTo"
         [(ngModel)]="email.to"
         #emailTo="ngModel"
+        [ngClass]="emailTo.valid || emailTo.pristine ? '' : 'bg-danger'"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
       />
+      <div *ngIf="emailTo.touched && !emailTo.valid">
+        <div *ngIf="emailTo.errors && emailTo.errors['required']">Email is required.</div>
+        <div *ngIf="emailTo.errors && emailTo.errors['pattern']">
+          Email does not match the required pattern.
+        </div>
+      </div>
     </div>
     <div class="form-group mb-3">
       <label>From</label>
@@ -22,7 +30,15 @@
         name="emailFrom"
         [(ngModel)]="email.from"
         #emailFrom="ngModel"
+        [ngClass]="emailFrom.valid || emailFrom.pristine ? '' : 'bg-danger'"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
       />
+      <div *ngIf="emailFrom.touched && !emailFrom.valid">
+        <div *ngIf="emailFrom.errors && emailFrom.errors['required']">Email is required.</div>
+        <div *ngIf="emailFrom.errors && emailFrom.errors['pattern']">
+          Email does not match the required pattern.
+        </div>
+      </div>
     </div>
     <div class="form-group mb-3">
       <label>Subject</label>
@@ -30,10 +46,22 @@
         class="form-control"
         type="text"
         required
+        minlength="10"
         name="emailSubject"
+        pattern="^.{10,50}$"
         #emailSubject="ngModel"
         [(ngModel)]="email.subject"
+        [ngClass]="emailSubject.valid || emailSubject.pristine ? '' : 'bg-danger'"
       />
+      <div *ngIf="emailSubject.invalid && emailSubject.touched">
+        <div *ngIf="emailSubject.errors?.['required']">Subject is required.</div>
+        <div *ngIf="emailSubject.errors?.['minlength'] ">
+          Subject must be at least 10 characters.
+        </div>
+        <div *ngIf="emailSubject.errors?.['pattern'] && emailSubject.value.length > 50">
+          Subject cannot be longer than 50 characters.
+        </div>
+      </div>
     </div>
 
     <div class="form-group mb-3">
@@ -46,16 +74,20 @@
       ></textarea>
     </div>
     <div class="d-flex flex-row">
-      <button class="btn btn-primary me-5" type="submit">
+      <button class="btn btn-primary me-5" type="submit" [disabled]="emailForm.invalid">
         Send
       </button>
 
-      <button class="btn btn-outline-secondary" type="reset" (click)="resetEmail()">
-        Reset
-      </button>
+      <button class="btn btn-outline-secondary" type="reset" (click)="resetEmail()">Reset</button>
+    </div>
+    <div class="alert alert-success mt-3" *ngIf="message">
+      {{ message }}
     </div>
   </form>
-   <table class="table table-striped mt-5" *ngIf="emailList.length > 0">
+  <div>
+    <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
+  </div>
+  <table class="table table-striped mt-5" *ngIf="emailList.length > 0">
     <thead>
       <tr>
         <th scope="col">To</th>
@@ -72,6 +104,5 @@
         <td>{{ mail.body }}</td>
       </tr>
     </tbody>
-    </table> 
-
+  </table>
 </div>
