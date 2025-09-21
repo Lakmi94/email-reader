@@ -74,11 +74,13 @@
       ></textarea>
     </div>
     <div class="d-flex flex-row">
-      <button class="btn btn-primary me-5" type="submit" [disabled]="emailForm.invalid">
+      <button class="btn btn-primary me-5 d-flex flex-row align-items-center gap-2" type="submit" [disabled]="emailForm.invalid">
+        <bi name="envelope" style="height: 30px"></bi>
         Send
       </button>
 
-      <button class="btn btn-outline-secondary" type="reset" (click)="resetEmail()">Reset</button>
+      <button class="btn btn-outline-secondary d-flex flex-row align-items-center gap-2" type="reset" (click)="resetEmail()">
+        <bi name="trash" style="height: 30px"></bi>Reset</button>
     </div>
     <div class="alert alert-success mt-3" *ngIf="message">
       {{ message }}
@@ -97,7 +99,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let mail of emailList">
+      <tr *ngFor="let mail of emailList" class="border-bottom">
         <td>{{ mail.to }}</td>
         <td>{{ mail.from }}</td>
         <td>{{ mail.subject }}</td>

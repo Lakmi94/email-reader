@@ -2,11 +2,12 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Email } from '../interfaces/email';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
-
+import { BootstrapIconsModule } from 'ng-bootstrap-icons';
+import { allIcons } from 'ng-bootstrap-icons/icons';
+import { IconsModule } from './icons.module';
 @Component({
   selector: 'app-email-reader-basic',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, IconsModule],
   templateUrl: './email-reader-basic.html',
   styleUrl: './email-reader-basic.css',
 })

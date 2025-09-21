@@ -35,6 +35,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
     "express": "^5.1.0",
+    "ng-bootstrap-icons": "^13.1.2-canary.1",
     "ngx-bootstrap": "^20.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
