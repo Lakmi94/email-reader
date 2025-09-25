@@ -2,24 +2,24 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Email } from '../interfaces/email';
 import { CommonModule } from '@angular/common';
-import { IconsModule } from './icons.module';
+import { IconsModule } from '../email-reader-basic/icons.module';
 import { EmailService } from '../services/email-service';
+
 @Component({
-  selector: 'app-email-reader-basic',
+  selector: 'app-email-form',
   imports: [FormsModule, CommonModule, IconsModule],
-  templateUrl: './email-reader-basic.html',
-  styleUrl: './email-reader-basic.css',
+  templateUrl: './email-form.html',
+  styleUrl: './email-form.css'
 })
-export class EmailReaderBasic implements OnInit {
-  email: Email;
-  emailList: Array<Email> = [];
+export class EmailForm implements OnInit{
+    email: Email;
+      emailList: Array<Email> = [];
   @ViewChild('emailForm') emailForm: any;
   message: string | null = null;
   constructor(private emailService: EmailService) {
     this.emailList = [];
   }
-
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.emailList = this.emailService.getEmails();
     this.email = {
       to: '',
@@ -29,7 +29,7 @@ export class EmailReaderBasic implements OnInit {
     };
   }
 
-  addEmailToList(email: Email): void {
+ addEmailToList(email: Email): void {
     this.emailList.push({
       to: email.to,
       from: email.from,

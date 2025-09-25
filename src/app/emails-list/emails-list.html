@@ -1,0 +1,25 @@
+<div>
+    <button class="btn btn-primary"> Create email</button>
+  <div>
+    <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
+  </div>
+  <table class="table table-striped mt-5" *ngIf="emailList.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">To</th>
+        <th scope="col">From</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Body</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mail of emailList" class="border-bottom">
+        <td>{{ mail.to }}</td>
+        <td>{{ mail.from }}</td>
+        <td>{{ mail.subject }}</td>
+        <td>{{ mail.body }}</td>
+        <td><button class="btn btn-outline-secondary">View</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

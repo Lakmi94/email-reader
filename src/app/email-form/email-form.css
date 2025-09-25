@@ -1,0 +1,15 @@
+
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched {
+  border: 10px solid green;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 10px solid yellow;
+}
+
+input:focus,
+textarea:focus {
+  background-color: #e6f7ff;
+}
