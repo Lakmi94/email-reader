@@ -1,5 +1,6 @@
 <div>
-    <button class="btn btn-primary"> Create email</button>
+  <h1>Email List</h1>
+  <a class="btn btn-primary" routerLink="/compose">Compose email</a>
   <div>
     <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
   </div>
@@ -19,6 +20,7 @@
         <td>{{ mail.subject }}</td>
         <td>{{ mail.body }}</td>
         <td><button class="btn btn-outline-secondary">View</button></td>
+           <td><button class="btn btn-outline-secondary">Delete</button></td>
       </tr>
     </tbody>
   </table>

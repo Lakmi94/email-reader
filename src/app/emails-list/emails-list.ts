@@ -1,24 +1,20 @@
-import { Component,OnInit, viewChild } from '@angular/core';
+import { Component, OnInit, viewChild } from '@angular/core';
 import { EmailService } from '../services/email-service';
-import {Email} from '../interfaces/email';
+import { Email } from '../interfaces/email';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-emails-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './emails-list.html',
-  styleUrl: './emails-list.css'
+  styleUrl: './emails-list.css',
 })
-export class EmailsList implements OnInit{
-  emailList: Array<Email> = []
+export class EmailsList implements OnInit {
+  emailList: Array<Email> = [];
   constructor(private emailService: EmailService) {
     this.emailList = [];
   }
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.emailList = this.emailService.getEmails();
-    console.log(this.emailList);
-    
   }
-
 }
