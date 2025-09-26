@@ -5,9 +5,10 @@ import { RouterLink } from '@angular/router';
 import { EmailService } from '../services/email-service';
 @Component({
   selector: 'app-emails-list',
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './emails-list.html',
-  styleUrl: './emails-list.css',
+  styleUrls: ['./emails-list.css'],
 })
 export class EmailsList implements OnInit {
   emailList: Array<Email> = [];

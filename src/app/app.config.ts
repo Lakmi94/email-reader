@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-   provideHttpClient(withFetch()),
+    provideHttpClient(withFetch()),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     importProvidersFrom([HttpClientInMemoryWebApiModule.forRoot(HttpServerEmailsSimulatorService)]),

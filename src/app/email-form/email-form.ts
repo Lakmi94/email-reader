@@ -9,9 +9,10 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-email-form',
+  standalone: true,
   imports: [FormsModule, CommonModule, IconsModule, BootstrapIconsModule, RouterLink],
   templateUrl: './email-form.html',
-  styleUrl: './email-form.css',
+  styleUrls: ['./email-form.css'],
 })
 export class EmailForm implements OnInit {
   email: Email;
