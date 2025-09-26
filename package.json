@@ -33,6 +33,7 @@
     "@angular/ssr": "^20.3.2",
     "@ng-bootstrap/ng-bootstrap": "^19.0.1",
     "@popperjs/core": "^2.11.8",
+    "angular-in-memory-web-api": "^0.20.0",
     "bootstrap": "^5.3.8",
     "express": "^5.1.0",
     "ng-bootstrap-icons": "^13.1.2-canary.1",
