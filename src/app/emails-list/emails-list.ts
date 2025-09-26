@@ -1,8 +1,9 @@
 import { Component, OnInit, viewChild } from '@angular/core';
-import { EmailService } from '../services/email-service';
 import { Email } from '../interfaces/email';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { EmailService } from '../services/email-service';
+import { get } from 'http';
 @Component({
   selector: 'app-emails-list',
   imports: [CommonModule, RouterLink],
@@ -11,10 +12,14 @@ import { RouterLink } from '@angular/router';
 })
 export class EmailsList implements OnInit {
   emailList: Array<Email> = [];
-  constructor(private emailService: EmailService) {
-    this.emailList = [];
-  }
+  email: Email | null = null;
+
+  constructor(private emailService: EmailService) {}
   ngOnInit(): void {
-    this.emailList = this.emailService.getEmails();
+    this.getEmailsList();
+  }
+
+  getEmailsList() {
+    this.emailService.getEmails().subscribe((list) => (this.emailList = list));
   }
 }

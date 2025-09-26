@@ -1,41 +1,67 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Email } from '../interfaces/email';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmailService {
-  private emailList: Array<any>;
+  private emailsURL = 'api/emails'; // URL to web api
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
-  constructor() { 
-      this.emailList = [ {
-      to: 'john@example.com',
-      from: 'jane@example.com',
-      subject: 'Hello John',
-      body: 'Just wanted to say hello!'
-    },
-    {
-      to: 'alice@example.com',
-      from: 'bob@example.com',
-      subject: 'Hello Alice',
-      body: 'Just wanted to say hello!'
-    },
-    {
-      to: 'charlie@example.com',
-      from: 'dave@example.com',
-      subject: 'Hello Charlie',
-      body: ''
-    }]; 
-   }
+  // private emailList: Array<Email>;
 
-  getEmails(): Array<any> {
-    return this.emailList;
+  constructor(private http: HttpClient) {}
+
+    private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      console.error(`${operation} failed: ${error.message}`);
+      console.error(error); // log to console instead
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 
-  addEmail(email: any): void {
-    this.emailList.push(email);
+  getEmails(): Observable<Email[]> {
+    return this.http.get<Email[]>(this.emailsURL).pipe(
+      tap((res) => console.log('fetched ' + res.length + ' emails')),
+      catchError(this.handleError<Email[]>('getEmails', []))
+    );
   }
 
-  clearEmails(): void {
-    this.emailList = [];
-  } 
+getEmail(email: Email): Observable<Email> {
+    console.log(`Retreiving information of email: ${email.id}`);
+    const url = `${this.emailsURL}/${email.id}`;
+    return this.http.get<Email>(url)
+  }
+
+  deleteEmail(email: Email): Observable<Email> {
+    const id = email.id;
+    const url = `${this.emailsURL}/${id}`;
+    return this.http.delete<Email>(url, this.httpOptions)
+  }
+
+  addEmail(email: Email): Observable<Email> {
+    return this.http.post<Email>(this.emailsURL, email, this.httpOptions).pipe(
+      tap((newEmail: Email) => console.log(`added email with id=${newEmail.id}`)),
+      catchError(this.handleError<Email>('addEmail'))
+    );
+  }
+  // getEmails(): Array<any> {
+  //   return this.emailList;
+  // }
+
+  // addEmail(email: any): void {
+  //   this.emailList.push(email);
+  // }
+
+  // clearEmails(): void {
+  //   this.emailList = [];
+  // }
 }

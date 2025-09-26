@@ -21,8 +21,9 @@ export class EmailForm implements OnInit {
     this.emailList = [];
   }
   ngOnInit(): void {
-    this.emailList = this.emailService.getEmails();
+    this.emailList = [];
     this.email = {
+      id: 0,
       to: '',
       from: '',
       subject: '',
@@ -32,6 +33,7 @@ export class EmailForm implements OnInit {
 
   addEmailToList(email: Email): void {
     this.emailList.push({
+      id: email.id,
       to: email.to,
       from: email.from,
       subject: email.subject,
