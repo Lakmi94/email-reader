@@ -3,7 +3,6 @@ import { Email } from '../interfaces/email';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { EmailService } from '../services/email-service';
-import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-emails-list',
   imports: [CommonModule, RouterLink],
@@ -14,7 +13,7 @@ export class EmailsList implements OnInit {
   emailList: Array<Email> = [];
   email: Email | null = null;
 
-  constructor(private emailService: EmailService, private cdr: ChangeDetectorRef) {
+  constructor(private emailService: EmailService) {
     this.emailList = [];
   }
   ngOnInit(): void {
