@@ -65,7 +65,16 @@ getEmail(email: Email): Observable<Email> {
       tap((newEmail: Email) => console.log(`added email with id=${newEmail.id}`)),
       catchError(this.handleError<Email>('addEmail'))
     );
+
   }
+
+  getEmailById(id: number): Observable<Email> {
+  const url = `${this.emailsURL}/${id}`;
+  return this.http.get<Email>(url);
+  }
+
+
+
   // getEmails(): Array<any> {
   //   return this.emailList;
   // }

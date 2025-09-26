@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { EmailForm } from './email-form/email-form';
 import { EmailsList } from './emails-list/emails-list';
 import { EmailReaderBasic } from './email-reader-basic/email-reader-basic';
+import { EmailViewer } from './email-viewer/email-viewer';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/list', pathMatch: 'full' },
@@ -9,4 +10,6 @@ export const routes: Routes = [
   { path: 'compose', component: EmailForm },
   { path: 'read', component: EmailReaderBasic },
   { path: '**', component: EmailsList },
+  { path: 'email/:id', component: EmailViewer }
+
 ];

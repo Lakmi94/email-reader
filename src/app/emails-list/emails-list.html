@@ -19,8 +19,10 @@
         <td>{{ mail.from }}</td>
         <td>{{ mail.subject }}</td>
         <td>{{ mail.body }}</td>
-        <td><a class="btn btn-primary" routerLink="/read">View</a></td>
+
+
         <td><button class="btn btn-outline-secondary" (click)="remove(mail)">Delete</button></td>
+          <td><button class="btn btn-outline-secondary" [routerLink]="['/email', mail.id]">View</button></td>
       </tr>
     </tbody>
   </table>
