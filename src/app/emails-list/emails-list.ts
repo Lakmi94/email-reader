@@ -1,4 +1,4 @@
-import { Component, OnInit, viewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Email } from '../interfaces/email';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -12,28 +12,26 @@ import { EmailService } from '../services/email-service';
 export class EmailsList implements OnInit {
   emailList: Array<Email> = [];
   email: Email | null = null;
-
+  @ViewChild('emaillist') emaillist: any;
   constructor(private emailService: EmailService) {
     this.emailList = [];
   }
   ngOnInit(): void {
     this.getEmailsList();
-    
   }
 
   getEmailsList() {
     this.emailService.getEmails().subscribe((list) => {
       this.emailList = list;
-     
     });
   }
 
   remove(email: Email): void {
     this.emailService.deleteEmail(email).subscribe(() => {
-      this.getEmailsList()
+      this.getEmailsList();
       this.email = null;
     });
-          this.emailList = this.emailList.filter((e) => e.id !== email.id);
+    this.emailList = this.emailList.filter((e) => e.id !== email.id);
     this.getEmailsList();
   }
 }

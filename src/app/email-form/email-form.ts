@@ -6,22 +6,25 @@ import { IconsModule } from '../email-reader-basic/icons.module';
 import { EmailService } from '../services/email-service';
 import { BootstrapIconsModule } from 'ng-bootstrap-icons';
 import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-email-form',
-  imports: [FormsModule, CommonModule, IconsModule, BootstrapIconsModule,RouterLink],
+  imports: [FormsModule, CommonModule, IconsModule, BootstrapIconsModule, RouterLink],
   templateUrl: './email-form.html',
   styleUrl: './email-form.css',
 })
 export class EmailForm implements OnInit {
   email: Email;
   emailList: Array<Email> = [];
+
   @ViewChild('emailForm') emailForm: any;
   message: string | null = null;
   constructor(private emailService: EmailService) {
     this.emailList = [];
   }
+
   ngOnInit(): void {
-    this.emailList = [];
+    this.getEmailsList();
     this.email = {
       id: 0,
       to: '',
@@ -30,16 +33,21 @@ export class EmailForm implements OnInit {
       body: null,
     };
   }
+  getEmailsList() {
+    this.emailService.getEmails().subscribe((list) => {
+      this.emailList = list;
+    });
+  }
 
   addEmailToList(email: Email): void {
-    this.emailList.push({
-      id: email.id,
+    const addedEmail = {
+      id: this.emailList.length + 1,
       to: email.to,
       from: email.from,
       subject: email.subject,
       body: email.body,
-    });
-
+    };
+    this.emailService.addEmail(addedEmail).subscribe((e) => {});
     this.message = `The email ${email.subject} sent to ${email.to} successfully!`;
     this.emailForm.resetForm();
   }
