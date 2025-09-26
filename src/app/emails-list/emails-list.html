@@ -19,8 +19,8 @@
         <td>{{ mail.from }}</td>
         <td>{{ mail.subject }}</td>
         <td>{{ mail.body }}</td>
-        <td><button class="btn btn-outline-secondary">View</button></td>
-           <td><button class="btn btn-outline-secondary">Delete</button></td>
+        <td><button class="btn btn-outline-secondary" >View</button></td>
+           <td><button class="btn btn-outline-secondary" (click)="remove(mail)">Delete</button></td>
       </tr>
     </tbody>
   </table>
