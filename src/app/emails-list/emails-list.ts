@@ -13,12 +13,10 @@ import { EmailService } from '../services/email-service';
 export class EmailsList implements OnInit {
   emailList: Array<Email> = [];
   email: Email | null = null;
-  @ViewChild('emaillist') emaillist: any;
-  constructor(private emailService: EmailService) {
-    this.emailList = [];
-  }
+
+  constructor(private emailService: EmailService) {}
   ngOnInit(): void {
-    this.getEmailsList();
+    this.emailService.getEmails().subscribe((list) => (this.emailList = list));
   }
 
   getEmailsList() {
@@ -29,10 +27,9 @@ export class EmailsList implements OnInit {
 
   remove(email: Email): void {
     this.emailService.deleteEmail(email).subscribe(() => {
-      this.getEmailsList();
+      this.emailList = this.emailList.filter((e) => e.id !== email.id);
       this.email = null;
     });
     this.emailList = this.emailList.filter((e) => e.id !== email.id);
-    this.getEmailsList();
   }
 }

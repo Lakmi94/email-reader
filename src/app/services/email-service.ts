@@ -12,6 +12,8 @@ export class EmailService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+  private emails: Email[] | null = null;
+
 
   // private emailList: Array<Email>;
 
@@ -29,8 +31,14 @@ export class EmailService {
   }
 
   getEmails(): Observable<Email[]> {
+     if (this.emails) {
+      return of(this.emails); // return cached list
+    }
     return this.http.get<Email[]>(this.emailsURL).pipe(
-      tap((res) => console.log('fetched ' + res.length + ' emails')),
+      tap((res) => {
+        this.emails = res;
+        console.log('fetched ' + res.length + ' emails');
+      }),
       catchError(this.handleError<Email[]>('getEmails', []))
     );
   }
@@ -44,7 +52,12 @@ getEmail(email: Email): Observable<Email> {
   deleteEmail(email: Email): Observable<Email> {
     const id = email.id;
     const url = `${this.emailsURL}/${id}`;
-    return this.http.delete<Email>(url, this.httpOptions)
+    return this.http.delete<Email>(url, this.httpOptions).pipe(tap(() => {
+       if (this.emails) {
+          this.emails = this.emails.filter(e => e.id !== email.id);
+        }
+    })
+  )
   }
 
   addEmail(email: Email): Observable<Email> {
