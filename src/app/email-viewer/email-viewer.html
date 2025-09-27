@@ -1,11 +1,17 @@
-<div *ngIf="email">
-  <h2>{{ email.subject }}</h2>
-  <p><strong>From:</strong> {{ email.from }}</p>
-  <p><strong>To:</strong> {{ email.to }}</p>
+<div *ngIf="email" class="container mt-4 p-4 border rounded shadow-sm bg-light">
+  <h2 class="mb-3">{{ email.subject }}</h2>
+  
+  <p><strong>From: </strong> <a href="mailto:{{ email.from }}" class="text-decoration-none">{{ email.from }}</a></p>
+  <p><strong>To: </strong> <a href="mailto:{{ email.to }}" class="text-decoration-none">{{ email.to }}</a></p>
+  
+  <hr>
+
   <p><strong>Body:</strong></p>
-  <p>{{ email.body }}</p>
+  <p class="p-3 bg-white border rounded shadow-sm" style="white-space: pre-wrap;">{{ email.body }}</p>
 </div>
 
-<div *ngIf="!email">
-  <p>Email not found.</p>
+<div *ngIf="!email" class="container mt-4">
+  <div class="alert alert-warning" role="alert">
+    Email not found.
+  </div>
 </div>
