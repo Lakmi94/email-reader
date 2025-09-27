@@ -1,5 +1,13 @@
 <div>
   <h1>Email List</h1>
+
+  <div style="margin-bottom: 1em;">
+    <label>
+      Emails only with body:
+      <input type="checkbox" [(ngModel)]="withBody">
+    </label>
+  </div>
+
   <a class="btn btn-primary" routerLink="/compose">Compose email</a>
   <div>
     <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
@@ -14,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let mail of emailList" class="border-bottom">
+      <tr *ngFor="let mail of filteredEmails" class="border-bottom">
         <td>{{ mail.to }}</td>
         <td>{{ mail.from }}</td>
         <td>{{ mail.subject }}</td>
