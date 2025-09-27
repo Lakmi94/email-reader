@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: 'list', component: EmailsList },
   { path: 'compose', component: EmailForm },
   { path: 'read', component: EmailReaderBasic },
+  { path: 'email/:id', component: EmailViewer },
   { path: '**', component: EmailsList },
-  { path: 'email/:id', component: EmailViewer }
 
 ];
