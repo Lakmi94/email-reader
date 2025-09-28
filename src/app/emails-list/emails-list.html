@@ -44,8 +44,8 @@
         <td>{{ mail.body }}</td>
 
 
-        <td><button class="btn btn-outline-secondary" (click)="remove(mail)">Delete</button></td>
-          <td><button class="btn btn-outline-secondary" [routerLink]="['/email', mail.id]">View</button></td>
+        <td><button class="btn btn-outline-secondary" (click)="remove(mail)" class="delete-button">Delete</button></td>
+          <td><button class="btn btn-outline-secondary" [routerLink]="['/email', mail.id]" class="view-button">View</button></td>
       </tr>
     </tbody>
   </table>

@@ -24,3 +24,26 @@
 .buttons:hover {
   background-color: lightcoral;
 }
+.view-button { 
+  background-color: #ffe4e4;
+  padding: 0.6em 1.6em;
+  border-radius: 14px;
+  border: none;
+}
+.view-button:hover {
+  background-color: lightcoral;
+  padding: 0.6em 1.6em;
+  border-radius: 14px;
+  border: none;
+}
+
+.delete-button {
+  background-color: white;
+  padding: 0.6em 1.6em;
+  border: 1px solid lightcoral;
+  border-radius: 14px;
+}
+
+.delete-button:hover {
+  background-color: lightcoral;
+}
