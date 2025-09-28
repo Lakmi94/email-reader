@@ -14,14 +14,12 @@ export class EmailService {
   };
   private emails: Email[] | null = null;
 
-
   // private emailList: Array<Email>;
 
   constructor(private http: HttpClient) {}
 
-    private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
       console.error(`${operation} failed: ${error.message}`);
       console.error(error); // log to console instead
 
@@ -31,7 +29,7 @@ export class EmailService {
   }
 
   getEmails(): Observable<Email[]> {
-     if (this.emails) {
+    if (this.emails) {
       return of(this.emails); // return cached list
     }
     return this.http.get<Email[]>(this.emailsURL).pipe(
@@ -43,37 +41,39 @@ export class EmailService {
     );
   }
 
-getEmail(email: Email): Observable<Email> {
+  getEmail(email: Email): Observable<Email> {
     console.log(`Retreiving information of email: ${email.id}`);
     const url = `${this.emailsURL}/${email.id}`;
-    return this.http.get<Email>(url)
+    return this.http.get<Email>(url);
   }
 
   deleteEmail(email: Email): Observable<Email> {
     const id = email.id;
     const url = `${this.emailsURL}/${id}`;
-    return this.http.delete<Email>(url, this.httpOptions).pipe(tap(() => {
-       if (this.emails) {
-          this.emails = this.emails.filter(e => e.id !== email.id);
+    return this.http.delete<Email>(url, this.httpOptions).pipe(
+      tap(() => {
+        if (this.emails) {
+          this.emails = this.emails.filter((e) => e.id !== email.id);
         }
-    })
-  )
+      })
+    );
   }
 
   addEmail(email: Email): Observable<Email> {
     return this.http.post<Email>(this.emailsURL, email, this.httpOptions).pipe(
-      tap((newEmail: Email) => console.log(`added email with id=${newEmail.id}`)),
+      tap((newEmail: Email) => {
+        console.log(`from service added email with id=${newEmail.id}`);
+        this.getEmails().subscribe();
+        this.emails?.push(newEmail);
+      }),
       catchError(this.handleError<Email>('addEmail'))
     );
-
   }
 
   getEmailById(id: number): Observable<Email> {
-  const url = `${this.emailsURL}/${id}`;
-  return this.http.get<Email>(url);
+    const url = `${this.emailsURL}/${id}`;
+    return this.http.get<Email>(url);
   }
-
-
 
   // getEmails(): Array<any> {
   //   return this.emailList;

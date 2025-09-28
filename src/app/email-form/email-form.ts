@@ -49,8 +49,8 @@ export class EmailForm implements OnInit {
       body: email.body,
     };
     this.emailService.addEmail(addedEmail).subscribe((e) => {});
-    this.message = `The email ${email.subject} sent to ${email.to} successfully!`;
     this.emailForm.resetForm();
+    this.getEmailsList();
   }
 
   resetEmail(): void {

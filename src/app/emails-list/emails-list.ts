@@ -18,8 +18,8 @@ export class EmailsList implements OnInit {
   email: Email | null = null;
 
   constructor(private emailService: EmailService) {}
-  ngOnInit(): void {
-    this.emailService.getEmails().subscribe((list) => (this.emailList = list));
+  ngOnInit(): void {    
+    this.emailService.getEmails().subscribe((list) => (this.emailList = list));    
   }
 
   get filteredEmails(): Email[] {
