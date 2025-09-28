@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./email-form.css'],
 })
 export class EmailForm implements OnInit {
-  email: Email;
+  email: Email ;
   emailList: Array<Email> = [];
 
   @ViewChild('emailForm') emailForm: any;
@@ -50,7 +50,6 @@ export class EmailForm implements OnInit {
     };
     this.emailService.addEmail(addedEmail).subscribe((e) => {});
     this.emailForm.resetForm();
-    this.getEmailsList();
   }
 
   resetEmail(): void {
