@@ -73,13 +73,13 @@
         #emailBody="ngModel"
       ></textarea>
     </div>
-    <div class="d-flex flex-row">
-      <button class="btn btn-primary me-5 d-flex flex-row align-items-center gap-2" type="submit" [disabled]="emailForm.invalid">
+    <div class="buttons-container">
+      <button class="send-button" type="submit" [disabled]="emailForm.invalid">
         <bi name="envelope" style="height: 30px"></bi>
         Send
       </button>
 
-      <button class="btn btn-outline-secondary d-flex flex-row align-items-center gap-2" type="reset" (click)="resetEmail()">
+      <button class="reset-button" type="reset" (click)="resetEmail()">
         <bi name="trash" style="height: 30px"></bi>Reset</button>
     </div>
     <div class="alert alert-success mt-3" *ngIf="message">
@@ -87,7 +87,7 @@
     </div>
   </form>
   <div>
-     <a class="btn btn-primary mt-3" routerLink="/list">Back to the list</a>
+     <a class="back-list-button" routerLink="/list">Back to the list</a>
     <!-- <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
   </div>
   <table class="table table-striped mt-5" *ngIf="emailList.length > 0">

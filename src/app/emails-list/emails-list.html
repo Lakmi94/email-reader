@@ -1,6 +1,13 @@
+<div class="top-container" style="display: flex; align-items: center; margin-bottom: 2em;">
+  <img src="/E-mail.jpg" alt="Logo" style="width: 48px; height: 48px; margin-right: 18px;">
+  <h1 style="margin: 0;">Email List</h1>
+</div>
+
 <div>
-  <h1>Email List</h1>
-  <a class="btn btn-primary mt-3 mb-3" routerLink="/compose">Compose email</a>
+  <a class="buttons" routerLink="/compose">Compose email</a>
+</div>
+
+<div>
   <div style="margin-bottom: 1em;">
     <label>
       Emails only with body:
@@ -13,9 +20,13 @@
       <input type="text" [(ngModel)]="filterTerm">
     </label>
   </div>
-  <div>
-    <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
-  </div>
+</div>
+
+<div class="empty-list-message">
+  <div *ngIf="emailList.length === 0" class="mt-5">The list of emails is empty</div>
+</div>
+
+<div>
   <table class="table table-striped mt-5" *ngIf="emailList.length > 0">
     <thead>
       <tr>

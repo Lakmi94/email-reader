@@ -1,0 +1,15 @@
+.back-list-button {
+  margin-top: 2rem;
+  padding: 0.6em 1.6em;
+  border-radius: 14px;
+  background-color: #ffe4e4;
+  font-weight: 600;
+  color: black;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.back-list-button:hover {
+  border-color: #888;
+  background: lightcoral;
+}
